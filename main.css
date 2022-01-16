@@ -1,0 +1,72 @@
+
+main{
+  display:block;
+  max-width:400px;
+  margin:auto;
+}
+
+.medium-image {
+  width:600px;
+  padding:5px;
+}
+
+.narrow-image {
+  display:block;
+  max-width:400px;
+  padding:5px;
+}
+
+.reallynarrow-image{
+  display:block;
+  max-width:250px;
+  padding:5px;
+}
+
+.fullwidth-image{
+  display:block;
+  max-width:100%;
+  width:100%;
+  padding:5%;
+}
+
+.tinyfont{
+  font-size:.6rem;
+}
+
+.stacker{
+  position:relative;
+}
+
+.overlaid{
+  position:absolute;
+}
+
+.h-centered{
+  text-align:center;
+  margin:auto;
+}
+
+.left{
+  right:auto;
+  left:0;
+}
+
+.right{
+  left;auto;
+  right:0;
+}
+
+.top{
+  bottom:auto;
+  top:0;
+}
+
+.bottom{
+  top:auto;
+  bottom:0;
+}
+
+.v-centered{
+  top:auto;
+  bottom:auto;
+}
