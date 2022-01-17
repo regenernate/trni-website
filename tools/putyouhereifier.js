@@ -7,8 +7,9 @@ exports.module = function(){
   let dow = moment().format('dddd');
   let day = moment().format('D');
   let mon = moment().format('MMMM');
-  return "<p>Where we are it's " + t + " on a relatively nice " + dow + " " + a + ".</p><p>I think " + mon + " the " + (day - 1) +
-   " ... err, maybe the " + day + ".";
+
+  return "<p>Aha, here I see it is " + t + " on a relatively nice " + dow + " " + a + ".</p><img src='/calendar.jpg' class='narrow-image' alt='This is an image of three dots representing yesterday, today and tomorrow.' /><p>" + mon + " the " + (day - 1) +
+   " ... or maybe the " + day + ".";
 
 }
 /*

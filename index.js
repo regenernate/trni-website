@@ -29,11 +29,6 @@ const server = http.createServer((req, res) => {
   res.statusCode = 200;
 
   if( req.url === '/favicon.ico' || req.headers.accept.substr(0,5).toLowerCase() == 'image' ){
-    if( req.url == '/favicon.ico' ){
-      res.writeHead(200, { 'Content-Type':'image/x-icon' } );
-    }else{
-      res.writeHead(200, { 'Content-Type':'image/*' } );
-    }
     var filename = __dirname+'/images'+req.url;
     //console.log("image ... " + req.url );
     // This line opens the file as a readable stream
@@ -41,11 +36,19 @@ const server = http.createServer((req, res) => {
     // This will wait until we know the readable stream is actually valid before piping
     readStream.on('open', function () {
       // This just pipes the read stream to the response object (which goes to the client)
+      console.log("reading :: " + filename);
+      if( req.url == '/favicon.ico' ){
+        res.writeHead(200, { 'Content-Type':'image/x-icon' } );
+      }else{
+        res.writeHead(200, { 'Content-Type':'image/*' } );
+      }
       readStream.pipe(res);
     });
     // This catches any errors that happen while creating the readable stream (usually invalid names)
     readStream.on('error', function(err) {
-      res.end(err);
+      res.writeHead(400)
+      console.log("There was a failure reading :: " + filename + " :: " + err );
+      res.end();
     });
     readStream.on('complete', function(done){
       res.end();

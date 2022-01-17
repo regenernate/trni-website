@@ -1,0 +1,15 @@
+{
+  "name": "hshfad-website",
+  "version": "1.0.0",
+  "description": "The public website for hidden springs horse farm and dairy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nathan Wheeler <nathan.greenling@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "moment": "^2.29.1"
+  }
+}
