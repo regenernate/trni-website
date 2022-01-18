@@ -4,7 +4,7 @@ require('dotenv').config();
 const http = require('http');
 const fs = require('fs');
 
-const hostname = process.env.HOST || '127.0.0.1';
+const hostname = process.env.BIND_IP || process.env.HOST || '127.0.0.1';
 const port = process.env.PORT || 3000;
 
 var home = "homepage";
