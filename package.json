@@ -1,14 +1,15 @@
 {
   "name": "hshfad-website",
   "version": "1.0.0",
-  "description": "The public website for hidden springs horse farm and dairy.",
-  "main": "index.js",
+  "description": "The public website for the RegenerNative Institute.",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Nathan Wheeler <nathan.greenling@gmail.com>",
+  "author": "Nathan Wheeler <regenernate@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^14.2.0",
     "fs": "0.0.1-security",
     "moment": "^2.29.1"
   }

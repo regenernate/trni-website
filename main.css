@@ -2,41 +2,61 @@ html{
   font-size:15pt;
 }
 
+li{
+  padding:.5rem;
+}
+
 main{
   display:block;
-  max-width:400px;
   margin:auto;
   font-family: Georgia,serif;
 }
 
+.narrow{
+  max-width:400px;
+}
+
+.medium{
+  max-width:600px;
+}
+
 p{
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family:Arial,sans-serif;
 }
 
 h1{
-  font-size:1.8rem;
+  font-size:2.1rem;
   font-weight:bold;
+  text-align:center;
 }
 
 h2{
-  font-size:1.6rem;
+  font-size:1.8rem;
   font-weight:bold;
+  border-top:3px solid #333333;
+  text-align:center;
 }
 
 h3{
-  font-size:1.5rem;
+  font-size:1.6rem;
   font-weight:bold;
+  border-top:2px solid #666666;
+  text-align:center;
 }
 
 h4{
-  font-size:1.3rem
+  font-size:1.4rem
   font-weight:bold;
+  border-top:1px solid #999999;
+  text-align:left;
 }
 
 h5{
   font-size:1.2rem;
-  font-weight:bold;
+  font-weight:normal;
+  border-top:.5px solid #AAAAAA;
+  text-align:left;
 }
 
 .medium-image {
@@ -54,6 +74,12 @@ h5{
   display:block;
   max-width:250px;
   padding:5px;
+}
+
+.thenarrowest-image{
+  display:block;
+  max-width:120px;
+  padding:0px;
 }
 
 .fullwidth-image{
@@ -79,6 +105,10 @@ h5{
   font-size:.9rem;
   font-family:Georgia;
   font-style:italic;
+}
+
+.lineup{
+  display:inline-block;
 }
 
 .stacker{
@@ -117,4 +147,9 @@ h5{
 .v-centered{
   top:auto;
   bottom:auto;
+}
+
+.sign-language-small{
+  max-width: 75px;
+  display:inline-block;
 }
