@@ -43,7 +43,9 @@ fs.watch( filename_index[ home ], ( eventType, filename ) => {
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
 
-  if( req.url === '/favicon.ico' || req.headers.accept.substr(0,5).toLowerCase() == 'image' ){
+  console.log("request is for ... " + req.url );
+
+  if( req.url === '/favicon.ico' || ( req.headers.accept && req.headers.accept.substr(0,5).toLowerCase() == 'image' ) ){
     var filename = __dirname+'/images'+req.url;
     //console.log("image ... " + req.url );
     // This line opens the file as a readable stream
