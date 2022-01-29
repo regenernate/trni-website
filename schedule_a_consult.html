@@ -10,21 +10,27 @@
   <body>
     <main class="narrow">
       <a href='<returnificate-me />'>Nevermind - take me back!</a>
-      <h1>Set up our virtual consult.</h1>
-      <h2>How do we reach you?</h2>
-      <p>Email is best but a phone number will also work.</p>
-      <p class='smallfont'>This is how we will send you our Goolge meetup invitation.</p>
-      <ul>
-        <li>Enter an email address: </li>
-        <li class='h-centered'>or</li>
-        <li>Enter a phone number ( for text ): </li>
-      </ul>
+        <form action='/schedule_me' id='theform' class='formed' method='post' />
+          <h1>Lets set up our virtual consult.</h1>
+          <h2>First, how do we reach you?</h2>
+          <p class='smallfont'>This is how we will send you our Goolge meetup invitation.</p>
+          <ul class='no-decor'>
+            <li><label for='my_email'>Enter an email address:</label> <input type='text' size='50' id='my_email' maxlength='100' name='my_email' /></li>
+            <li class='h-centered'>and/or</li>
+            <li><label for='my_phone'>Enter a phone number ( for text ):</label> <input type='text' size='30' id='my_phone' maxlength="20" name='my_phone' /></li>
+          </ul>
+          <h3>Now, what day and time work for you?</h3>
+          <p>Only dates with available times are selectable in the calendar below.</p>
+          <!-- enter the dang calendar thingy here -->
+          <label for='my_preferred_date'>My Preferred Date</label><input type='datetime-local' name='my_preferred_date' id='my_preferred_date' />
+<!--          <label for='my_preferred_time'>My Preferred Time</label><input type='time' name='my_preferred_time' id='my_preferred_time' /> -->
+          <p>Any additional comments or questions?</p>
+          <label for='my_comments'>Comments & Questions</label><br/>
+          <textarea rows='10' size='50' id='my_comments' name='my_comments'></textarea>
+          <p>Now click "Confirm" below to confirm the appointment.</p>
+          <input type='submit' value='Submit Request' />
+        </form>
       <img src='/pick_a_date.jpg' class='reallynarrow-image' alt='This drawing depicts the steps in setting up a virtual consultation.' />
-      <h3>Now, what day and time work for you?</h3>
-      <p>Only dates with available times are selectable in the calendar below.</p>
-      <!-- enter the dang calendar thingy here -->
-      <p>Thanks for picking a date. Now click "Confirm" below to confirm the appointment.</p>
-      <a href='<returnificate-me />'>All done!</a>
     </main>
   </body>
 </html>

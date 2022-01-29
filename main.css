@@ -12,6 +12,10 @@ main{
   font-family: Georgia,serif;
 }
 
+.no-decor{
+  list-style:none;
+}
+
 .narrow{
   max-width:400px;
 }

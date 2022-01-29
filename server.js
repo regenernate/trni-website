@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const http = require('http');
 const fs = require('fs');
+const qs = require('querystring');
 
 const hostname = process.env.BIND_IP || process.env.HOST || '127.0.0.1';
 const port = process.env.PORT || 3000;
@@ -20,6 +21,8 @@ var filename_index = {
     educational_consult:__dirname+'/educational_consult.html'
   };
 
+var script_index = {};
+
 function reloadPage( v ){
   page_index[ v ] = "";
   fs.readFile(filename_index[ v ],function (err, data){
@@ -32,12 +35,17 @@ reloadPage( consult );
 reloadPage( questionert );
 reloadPage( theschool )
 
+/***
 fs.watch( filename_index[ home ], ( eventType, filename ) => {
   if( eventType.toLowerCase() == "change" ){
       reloadPage( home );
   }
 });
-//add listener to homepage for auto-refresh???
+***/
+
+//load scripts
+var scripts = {};
+scripts[ "schedule_me" ] = require( './schedule_me.js' );
 
 
 const server = http.createServer((req, res) => {
@@ -71,41 +79,72 @@ const server = http.createServer((req, res) => {
       res.end();
     })
   }else{
-    let p = req.url.substr(1).split(".")[0].toLowerCase().split("/"); //get just the page name - assumes a leading "/" and works with .html extension or without
-    let pagename = p[0];
-    let subpath = p[1] || "";
-//    console.log("Looking for page :: " + pagename );
-    if( pagename === '' || pagename === 'index' ){ //peel off the homepage requests first
-      var toolspath = __dirname + '/tools';
-      let t = require(toolspath + '/putyouhereifier.js').module();
-      t = page_index[ home ].split("<hereify />").join(t);
-      res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
-      res.write(t);
-      res.end();
-    }else if( filename_index.hasOwnProperty( pagename ) ) { //this is a known page, not the homepage, ( with a template to display )
-//      console.log("In else if statement");
-      let t = page_index[ pagename ];
-      let r = "/index";
-      if( subpath ){
-        r = "/" + subpath;
-      }
-//      console.log("pagename :: " + pagename + ' and subpath :: ' + subpath);
-      t = t.split("<returnificate-me />").join(r);
-      res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
-      res.write(t);
-      res.end();
-    }else if( req.url.substr(-3) === "css" ){ //these are css requests
-//      console.log("its css ! " +req.url)
-      var filename = __dirname+req.url;
-      fs.readFile(filename,function (err, data){
-        res.writeHead(200, {'Content-Type': 'text/css','Content-Length':data.length});
-        res.write(data);
+    try{
+      let p = req.url.substr(1).split(".")[0].toLowerCase().split("/"); //get just the page name - assumes a leading "/" and works with .html extension or without
+      let pagename = p[0];
+      let subpath = p[1] || "";
+  //    console.log("Looking for page :: " + pagename );
+      if( pagename === '' || pagename === 'index' ){ //peel off the homepage requests first
+        var toolspath = __dirname + '/tools';
+        let t = require(toolspath + '/putyouhereifier.js').module();
+        t = page_index[ home ].split("<hereify />").join(t);
+        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
+        res.write(t);
         res.end();
-      });
-    }else{ //these are requests we don't yet handle
-//      console.log("it isnt css " + req.url);
-      res.writeHead(200, { 'Content-Type':'text/plain' })
-      res.end('Requested :: ' + req.url + " which does not yet have routing defined. ( in the final 'else' of server.js )");
+      }else if( filename_index.hasOwnProperty( pagename ) ) { //this is a known page, not the homepage, ( with a template to display )
+  //      console.log("In else if statement");
+        let t = page_index[ pagename ];
+        let r = "/index";
+        if( subpath ){
+          r = "/" + subpath;
+        }
+  //      console.log("pagename :: " + pagename + ' and subpath :: ' + subpath);
+        t = t.split("<returnificate-me />").join(r);
+        res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
+        res.write(t);
+        res.end();
+      }else if( scripts.hasOwnProperty( pagename ) ) {
+        //check for submitted data
+        if (req.method == 'POST') {
+          var body = '';
+          req.on('data', function (data) {
+            body += data;
+            // Too much POST data, kill the connection!
+            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+            if (body.length > 1e6)
+                request.connection.destroy();
+          });
+          req.on('end', function () {
+            var post = qs.parse(body);
+            // use post['blah'], etc.
+            console.log(scripts[pagename]);
+            let t = scripts[ pagename ].processRequest( post ) || "The script totally failed."
+            res.writeHead(200, {'Content-Type':'text/html', 'Content-length':t.length});
+            res.write(t);
+            res.end();
+          });
+        }else{
+          console.log("You gotta be kidding me with this GET crap!");
+          console.log( req.url );
+          res.writeHead(404);
+          res.end("No dice on the GETTING.");
+        }
+      }else if( req.url.substr(-3) === "css" ){ //these are css requests
+  //      console.log("its css ! " +req.url)
+        var filename = __dirname+req.url;
+        fs.readFile(filename,function (err, data){
+          res.writeHead(200, {'Content-Type': 'text/css','Content-Length':data.length});
+          res.write(data);
+          res.end();
+        });
+      }else{ //these are requests we don't yet handle
+  //      console.log("it isnt css " + req.url);
+        res.writeHead(404, { 'Content-Type':'text/plain' })
+        res.end('Requested :: ' + req.url + " which does not yet have routing defined. ( in the final 'else' of server.js )");
+      }
+    }catch(err){
+      console.log(err.message);
+      res.end(err.message);
     }
   }
 });
