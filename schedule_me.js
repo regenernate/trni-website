@@ -18,6 +18,8 @@ module.exports.processRequest=function(data){
     d += i + " = " + data[i] + "\n\r";
   }
 
+  console.log("requesting at :: " + d );
+  
   transporter.sendMail({
     from: '"tRNi Website" <' + process.env.MAILER_FROM + '>', // sender address
     to: process.env.MAILER_TO, // list of receivers
