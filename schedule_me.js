@@ -1,6 +1,32 @@
+require('dotenv').config();
+
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+  auth: {
+    user: process.env.MAILER_FROM,
+    pass: process.env.MAILER_PASS
+  },
+});
+transporter.verify().then(console.log).catch(console.error);
 
 module.exports.processRequest=function(data){
-  console.log( "yay data :: ", data );
+  let d = "";
+  for( let i in data ){
+    d += i + " = " + data[i] + "\n\r";
+  }
+
+  transporter.sendMail({
+    from: '"tRNi Website" <' + process.env.MAILER_FROM + '>', // sender address
+    to: process.env.MAILER_TO, // list of receivers
+    subject: "consultation requested", // Subject line
+    text: "Consultation was requested with info:\n" + d, // plain text body
+  }).then(info => {
+    console.log({info});
+  }).catch(console.error);
+
   return("We've got you scheduled for " + data.my_preferred_date + ".");
 }
 
