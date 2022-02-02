@@ -51,7 +51,8 @@ scripts[ "schedule_me" ] = require( './schedule_me.js' );
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
 
-  console.log("request is for ... " + req.url );
+  //console.log("request is for ... " + req.url );
+  if( !req.headers.accept ) req.headers.accept = "text/html";
 
   if( req.url === '/favicon.ico' || ( req.headers.accept && req.headers.accept.substr(0,5).toLowerCase() == 'image' ) ){
     var filename = __dirname+'/images'+req.url;
