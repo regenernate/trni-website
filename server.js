@@ -1,60 +1,74 @@
 
 require('dotenv').config();
 
+const DOMAIN_OVERRIDE = process.env.DOMAIN_OVERRIDE || "hshf";
+
+//domain lock so users are less likely to just add tons of domains without thinking and testing
+//this is a feature of the server, not a domain switching station
+var domains = {
+  regenernate:"regenernate",
+  theregenernativeinstitute:"trni",
+  regenernativelandmanagement:"rlm",
+  thewholeofregenerative:"wor",
+  'farmstead-design-build':"fdb",
+  'software-design-build':"sdb",
+  'regenernativedesign':"rgd"
+};
+
 const http = require('http');
 const fs = require('fs');
-const qs = require('querystring');
 
 const hostname = process.env.BIND_IP || process.env.HOST || '127.0.0.1';
 const port = process.env.PORT || 3000;
-
+const toolspath = "./tools";
 var home = "homepage";
-var consult = "schedule_a_consult";
-var questionert = "preconsult_questionert";
-var theschool = "educational_consult";
 
 var page_index = {};
 var filename_index = {
-    homepage:__dirname+'/index.html',
-    schedule_a_consult:__dirname+'/schedule_a_consult.html',
-    preconsult_questionert:__dirname + '/preconsult_questionert.html',
-    educational_consult:__dirname+'/educational_consult.html'
-  };
-
-var script_index = {};
+  homepage_regenernate:__dirname+'/regenernate.html',
+  homepage_trni:__dirname+'/the_regenernative_institute.html',
+  homepage_rlm:__dirname+'/regenernative_lm.html',
+  homepage_wor:__dirname+'/whole_of_regen.html',
+  homepage_fdb:__dirname+'/farmstead_db.html',
+  homepage_sdb:__dirname+'/software_db.html',
+  homepage_rgd:__dirname+'/regenernativedesign.html',
+};
 
 function reloadPage( v ){
   page_index[ v ] = "";
   fs.readFile(filename_index[ v ],function (err, data){
-    page_index[ v ] += data;
+    if( err ) throw new Error(err);
+    //insert header using headerer tool
+    let d = data.toString();
+    if( d && !page_index[ v ] ){ // this should only be entered on the FIRST data chunk
+      let h = require('./tools/headerer.js');
+      d = d.split( h.codeword ).join( h.header );
+    }
+    page_index[ v ] += d;
   });
 }
 
-reloadPage( home );
-reloadPage( consult );
-reloadPage( questionert );
-reloadPage( theschool )
-
-/***
+//bootstrap initial indices of pages
+for( let i in filename_index ){
+  reloadPage( i );
+}
+/*
 fs.watch( filename_index[ home ], ( eventType, filename ) => {
   if( eventType.toLowerCase() == "change" ){
       reloadPage( home );
   }
 });
-***/
-
-//load scripts
-var scripts = {};
-scripts[ "schedule_me" ] = require( './schedule_me.js' );
+*/
+//add listener to homepage for auto-refresh???
 
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
 
-  //console.log("request is for ... " + req.url );
   if( !req.headers.accept ) req.headers.accept = "text/html";
 
-  if( req.url === '/favicon.ico' || ( req.headers.accept && req.headers.accept.substr(0,5).toLowerCase() == 'image' ) ){
+  //serve images first
+  if( req.url === '/favicon.ico' || req.headers.accept.substr(0,5).toLowerCase() == 'image' ){
     var filename = __dirname+'/images'+req.url;
     //console.log("image ... " + req.url );
     // This line opens the file as a readable stream
@@ -79,76 +93,87 @@ const server = http.createServer((req, res) => {
     readStream.on('complete', function(done){
       res.end();
     })
-  }else{
-    try{
-      let p = req.url.substr(1).split(".")[0].toLowerCase().split("/"); //get just the page name - assumes a leading "/" and works with .html extension or without
-      let pagename = p[0];
-      let subpath = p[1] || "";
-  //    console.log("Looking for page :: " + pagename );
-      if( pagename === '' || pagename === 'index' ){ //peel off the homepage requests first
-        var toolspath = __dirname + '/tools';
-        let t = require(toolspath + '/putyouhereifier.js').module();
-        t = page_index[ home ].split("<hereify />").join(t);
-        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
-        res.write(t);
-        res.end();
-      }else if( filename_index.hasOwnProperty( pagename ) ) { //this is a known page, not the homepage, ( with a template to display )
-  //      console.log("In else if statement");
-        let t = page_index[ pagename ];
-        let r = "/index";
-        if( subpath ){
-          r = "/" + subpath;
-        }
-  //      console.log("pagename :: " + pagename + ' and subpath :: ' + subpath);
-        t = t.split("<returnificate-me />").join(r);
-        res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
-        res.write(t);
-        res.end();
-      }else if( scripts.hasOwnProperty( pagename ) ) {
-        //check for submitted data
-        if (req.method == 'POST') {
-          var body = '';
-          req.on('data', function (data) {
-            body += data;
-            // Too much POST data, kill the connection!
-            // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
-            if (body.length > 1e6)
-                request.connection.destroy();
-          });
-          req.on('end', function () {
-            var post = qs.parse(body);
-            // use post['blah'], etc.
-            console.log(scripts[pagename]);
-            let t = scripts[ pagename ].processRequest( post ) || "The script totally failed."
-            res.writeHead(200, {'Content-Type':'text/html', 'Content-length':t.length});
-            res.write(t);
-            res.end();
-          });
-        }else{
-          console.log("You gotta be kidding me with this GET crap!");
-          console.log( req.url );
-          res.writeHead(404);
-          res.end("No dice on the GETTING.");
-        }
-      }else if( req.url.substr(-3) === "css" ){ //these are css requests
-  //      console.log("its css ! " +req.url)
-        var filename = __dirname+req.url;
-        fs.readFile(filename,function (err, data){
-          res.writeHead(200, {'Content-Type': 'text/css','Content-Length':data.length});
-          res.write(data);
-          res.end();
-        });
-      }else{ //these are requests we don't yet handle
-  //      console.log("it isnt css " + req.url);
-        res.writeHead(404, { 'Content-Type':'text/plain' })
-        res.end('Requested :: ' + req.url + " which does not yet have routing defined. ( in the final 'else' of server.js )");
+  }else if( req.url.substr(-3) === "css" ){ //these are css requests
+//      console.log("its css ! " +req.url)
+    var filename = __dirname+req.url;
+    fs.readFile(filename,function (err, data){
+      res.writeHead(200, {'Content-Type': 'text/css','Content-Length':data.length});
+      res.write(data);
+      res.end();
+    });
+  }else{ //if not an image or css ...
+    console.log("HOST REQUESTION :: " + req.headers.host);
+    //get the requesting domain extension for proper routing
+    let d = req.headers.host.split(".");
+    if( d[0] == "www" ) d = d[1];
+    else d = d[0];
+
+    //getting the domain so we know what content to serve
+    //don't forget to add your new domains to the domain lock at top of page
+
+    let de = domains[ d ] || DOMAIN_OVERRIDE;
+
+    console.log("ROUTING TO :: " + de );
+
+    let p = req.url.substr(1).split(".")[0].toLowerCase().split("/"); //get just the page name - assumes a leading "/" and works with .html extension or without
+    let pagename = p[0];
+    let subpath = p[1] || "";
+    //console.log("Looking for page :: " + pagename + " in " + visiting );
+    if( filename_index.hasOwnProperty( de ) ){ //peel off known 404 domains
+      res.writeHead(200, {'Content-Type': 'text/html','Content-Length':page_index[de].length });
+      res.write( page_index[de] );
+      res.end();
+    }else if( pagename === '' || pagename === 'index' ){ //peel off the root domain homepage requests for next
+      //hereify
+      let t = require(toolspath + '/putyouhereifier.js').module();
+      //insert herification data
+      t = page_index[ home + "_" + de ].split("<hereify />").join(t);
+      //add any lists needed by this page
+      t = listify(t);
+      //return the page contents
+      res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
+      res.write(t);
+      res.end();
+    }else if( filename_index.hasOwnProperty( pagename ) ) { //this is a known page on a root domain, not the homepage, ( with a template to display )
+      //find the template to run
+      let t = page_index[ pagename ];
+      let r = "";
+      if( subpath ){
+        r = "/" + subpath;
       }
-    }catch(err){
-      console.log(err.message);
-      res.end(err.message);
+//      console.log( "it's on " + visiting + " - " + pagename + ' :: ' + subpath);
+      t = t.split("<returnificate-me />").join(r);
+      t = listify(t);
+      res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
+      res.write(t);
+      res.end();
+    }else{ //these are requests we don't yet handle
+      console.log("OOPS !!!! it isnt css or a known page in server.js ( towards the end )" + req.url);
+      res.writeHead(200, { 'Content-Type':'text/plain' })
+      res.end("Hmmm ... we're not sure what you're looking for. You requested :: " + req.url + " which does not yet have routing defined.");
+//      throw new Error("Oops, this shouldn't have happened!");
     }
   }
 });
+
+/** functionality added for whole of regen **/
+var terms=require('./terms.json').terms;
+
+function listify( content ){
+  let t = content.split("<listify ");
+  let r = ""; //initializing return variable
+  for( let i=0; i<t.length; i++){
+    if(i%2 == 1){
+      //pull the order desired out of the tag
+      let order = t[i].substring(0, t[i].indexOf("/>")-1);
+      r += require(toolspath + '/listifier.js').module( terms, order);
+      r += t[i].substr( t[i].indexOf(">") + 1);
+    }else{
+      r += t[i]
+    }
+  }
+  return r;
+}
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);

@@ -20,7 +20,7 @@ Last update: Today-ish
 Standards: HTML5, CSS3, Node.js
 
 
-Components: Moment.js
+Components: Moment.js, dotenv.js, fs.js
 
 
 Software: Atom, Photoshop
