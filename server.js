@@ -34,7 +34,8 @@ var filename_index = {
   homepage_rgd:__dirname+'/regenernativedesign.html',
   schedule_a_consult:__dirname+'/schedule_a_consult.html',
   preconsult_questionert:__dirname+'/preconsult_questionert.html',
-  educational_consult:__dirname+'/educational_consult.html'
+  educational_consult:__dirname+'/educational_consult.html',
+  definitions:__dirname+"/templates/definition.html"
 };
 
 function reloadPage( v ){
@@ -144,12 +145,25 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
       res.write(t);
       res.end();
+    }else if( pagename == "definitions" ){
+      //insert the info
+      let t = page_index[pagename];
+      subpath = subpath.toLowerCase();
+      if( subpath && definitions_of_terms[ subpath ] ){
+        let tpi = definitions_of_terms[ subpath ]
+        t = t.split("{{term}}").join(subpath);
+        for( let i in tpi ){
+          t = t.split("{{" + i + "}}").join(tpi[i]);
+        }
+      }
+      res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
+      res.write(t);
+      res.end();
     }else if( filename_index.hasOwnProperty( pagename ) ) { //this is a known page on a root domain, not the homepage, ( with a template to display )
       //find the template to run
       let t = page_index[ pagename ];
       let r = "/";
       if( subpath ) r += subpath;
-      //console.log( "it's on " + subpath);
       t = t.split("<returnificate-me />").join(r);
       t = listify(t);
       res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
@@ -165,7 +179,8 @@ const server = http.createServer((req, res) => {
 });
 
 /** functionality added for whole of regen **/
-var terms=require('./terms.json').terms;
+var terms=require('./data/terms.json').terms;
+var definitions_of_terms =require('./data/definitions.json').terms;
 
 function listify( content ){
   let t = content.split("<listify ");
