@@ -112,7 +112,7 @@ const server = http.createServer((req, res) => {
       res.end();
     });
   }else{ //if not an image or css ...
-    console.log("HOST REQUESTION :: " + req.headers.host);
+    console.log("HOST :: " + req.headers.host);
     //get the requesting domain extension for proper routing
     let d = req.headers.host.split(".");
     if( d[0] == "www" ) d = d[1];
@@ -147,11 +147,9 @@ const server = http.createServer((req, res) => {
     }else if( filename_index.hasOwnProperty( pagename ) ) { //this is a known page on a root domain, not the homepage, ( with a template to display )
       //find the template to run
       let t = page_index[ pagename ];
-      let r = "";
-      if( subpath ){
-        r = "/" + subpath;
-      }
-//      console.log( "it's on " + visiting + " - " + pagename + ' :: ' + subpath);
+      let r = "/";
+      if( subpath ) r += subpath;
+      //console.log( "it's on " + subpath);
       t = t.split("<returnificate-me />").join(r);
       t = listify(t);
       res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
