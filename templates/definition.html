@@ -4,6 +4,9 @@
 
   <body>
     <main>
+      <span>Previous Term: <a href="./{{previous_term}}">{{previous_term}}</a></span>
+      <span>Next Term: <a href="./{{next_term}}">{{next_term}}</a></span>
+      <span>or return to the <a href="/">Full List</a></span>
       <h1>{{term}}</h1>
       <p>{{definition}}</p>
       <h2>Forms as different parts of speech</h2>
@@ -19,11 +22,15 @@
     </main>
     <footer>
       <ul>
-        <li>{{previous_term}}</li>
-        <li>{{next_term}}</li>
-        <li>{{related_term_1}}</li>
-        <li>{{related term_2}}</li>
-        <li>{{related term_3}}</li>
+        <li>Previous Term: <a href="./{{previous_term}}">{{previous_term}}</a></li>
+        <li>Next Term: <a href="./{{next_term}}">{{next_term}}</a></li>
+        <li>Closely Related Terms:
+          <ol>
+            <li><a href="./{{related_term_1}}">{{related_term_1}}</a></li>
+            <li><a href="./{{related_term_2}}">{{related_term_2}}</a></li>
+            <li><a href="./{{related_term_3}}">{{related_term_3}}</a></li>
+          </ol>
+        </li>
       </ul>
     </footer>
   </body>
