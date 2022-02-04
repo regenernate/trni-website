@@ -32,6 +32,9 @@ var filename_index = {
   homepage_fdb:__dirname+'/farmstead_db.html',
   homepage_sdb:__dirname+'/software_db.html',
   homepage_rgd:__dirname+'/regenernativedesign.html',
+  schedule_a_consult:__dirname+'/schedule_a_consult.html',
+  preconsult_questionert:__dirname+'/preconsult_questionert.html',
+  educational_consult:__dirname+'/educational_consult.html'
 };
 
 function reloadPage( v ){
