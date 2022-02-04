@@ -45,7 +45,14 @@ function reloadPage( v ){
     let d = data.toString();
     if( d && !page_index[ v ] ){ // this should only be entered on the FIRST data chunk
       let h = require('./tools/headerer.js');
-      d = d.split( h.codeword ).join( h.header );
+      let content_start = d.split( h.start_tag );
+      if( content_start.length == 2 ){
+        let content_end = content_start[1].split(h.end_tag);
+        d = content_start[0] + h.makeHeader(content_end[0]) + content_end[1];
+      }else{
+        console.log("This one don't have no header ... ( server.js ).");
+        //d remains unchanged
+      }
     }
     page_index[ v ] += d;
   });
@@ -116,7 +123,7 @@ const server = http.createServer((req, res) => {
 
     let de = domains[ d ] || DOMAIN_OVERRIDE;
 
-    console.log("ROUTING TO :: " + de );
+    //console.log("ROUTING TO :: " + de );
 
     let p = req.url.substr(1).split(".")[0].toLowerCase().split("/"); //get just the page name - assumes a leading "/" and works with .html extension or without
     let pagename = p[0];

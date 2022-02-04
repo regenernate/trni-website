@@ -1,5 +1,9 @@
 
-const header_text = "<head><meta charset = 'utf-8'><title>Regenernate's Homepage</title><link rel='author' href='/humans.txt' /><!--  <desc>the RegenerNative Institute is an educational for-profit organization dedicated to the mission of providing homeschoolers with everything they need to succeed in todays distributed school ecosystem, and the greater world beyond.</desc> --><style>@import url('/main.css');</style></head>";
+const header_start = "<head><meta charset = 'utf-8'><title>";
+const header_end = "</title><link rel='author' href='/humans.txt' /><style>@import url('/main.css');</style></head>";
 
-module.exports.codeword = "<headerme />";
-module.exports.header = header_text;
+module.exports.start_tag = "<headerme>";
+module.exports.end_tag = "</headerme>";
+module.exports.makeHeader = function(title){
+  return header_start + title + header_end;
+}
