@@ -12,6 +12,11 @@ main{
   font-family: Georgia,serif;
 }
 
+.word-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .no-decor{
   list-style:none;
 }

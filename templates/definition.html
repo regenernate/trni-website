@@ -4,8 +4,8 @@
 
   <body>
     <main>
-      <span>Previous Term: <a href="./{{previous_term}}">{{previous_term}}</a></span>
-      <span>Next Term: <a href="./{{next_term}}">{{next_term}}</a></span>
+      <span>Previous Term: {{previous_term}}</span>
+      <span>Next Term: {{next_term}}</span>
       <span>or return to the <a href="/">Full List</a></span>
       <h1>{{term}}</h1>
       <p>{{definition}}</p>
@@ -22,16 +22,21 @@
     </main>
     <footer>
       <ul>
-        <li>Previous Term: <a href="./{{previous_term}}">{{previous_term}}</a></li>
-        <li>Next Term: <a href="./{{next_term}}">{{next_term}}</a></li>
+        <li>Previous Term: {{previous_term}}</li>
+        <li>Next Term: {{next_term}}</li>
         <li>Closely Related Terms:
           <ol>
-            <li><a href="./{{related_term_1}}">{{related_term_1}}</a></li>
-            <li><a href="./{{related_term_2}}">{{related_term_2}}</a></li>
-            <li><a href="./{{related_term_3}}">{{related_term_3}}</a></li>
+            <li>{{related_term_1}}</li>
+            <li>{{related_term_2}}</li>
+            <li>{{related_term_3}}</li>
           </ol>
         </li>
       </ul>
+      <p>Some other sources for more info on {{term}}.</p>
+      <ol>
+        <li>On mirriam-webster.com - <a href='https://www.merriam-webster.com/dictionary/{{term}}'>{{term}}</a></li>
+        <li>On wikipedia.com - <a href='https://en.wikipedia.org/wiki/{{term}}'>{{term}}</a></li>
+      </ol>
     </footer>
   </body>
 

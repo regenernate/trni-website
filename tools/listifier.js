@@ -26,7 +26,7 @@ exports.module = function( terms, order, url_base ){
     rtn = terms.join("<br \>")
   }
 
-  return "There are " + terms.length + " terms below.</br>" + rtn;
+  return rtn;
 }
 /*
 

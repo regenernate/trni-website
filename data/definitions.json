@@ -15,7 +15,7 @@
         "related_term_3":"regenerative"
       },
       "adaptive":{
-        "definition":"",
+        "definition":"Able to adjust to conditions on the ground. Ideally moment by moment but at a minimum seasonally, daily and hourly.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -28,7 +28,7 @@
         "related_term_3":""
       },
       "analysis":{
-        "definition":"",
+        "definition":"Open-eyed assessment of conditions on the ground in context of objectives to be achieved and available resources.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -41,7 +41,7 @@
         "related_term_3":""
       },
       "appreciation":{
-        "definition":"",
+        "definition":"Gratefullness for what is already here, or for what has already happened.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -54,7 +54,7 @@
         "related_term_3":""
       },
       "biome":{
-        "definition":"",
+        "definition":"Everything contained within or adjacent to the portion of an ecosystem in question as defined by a particular biological categorization.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -67,7 +67,7 @@
         "related_term_3":""
       },
       "browse":{
-        "definition":"",
+        "definition":"Pattern of food availability or consumption characterized by multiple sources across trophic levels being mixed and matched at the eater's choice.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -80,7 +80,7 @@
         "related_term_3":""
       },
       "change":{
-        "definition":"",
+        "definition":"Observable and potentially measurable difference over time.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -93,7 +93,7 @@
         "related_term_3":""
       },
       "chaos":{
-        "definition":"",
+        "definition":"Disorder.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -106,7 +106,7 @@
         "related_term_3":""
       },
       "classification":{
-        "definition":"",
+        "definition":"Unique set of categories to organizate a thing for accurate identification.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -119,7 +119,7 @@
         "related_term_3":""
       },
       "communicate":{
-        "definition":"",
+        "definition":"Accurate conveyance of information from one entity to another.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -132,7 +132,7 @@
         "related_term_3":""
       },
       "community":{
-        "definition":"",
+        "definition":"A group of entities that self-identify or can be externally identified as a whole based on physical, mental or emotional proximity.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -145,7 +145,7 @@
         "related_term_3":""
       },
       "context":{
-        "definition":"",
+        "definition":"The specific set of circumstances and criteria impacting a particular location or situation.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -158,7 +158,7 @@
         "related_term_3":""
       },
       "cycle":{
-        "definition":"",
+        "definition":"Something that repeats over time, usually feeding into itself.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -171,7 +171,7 @@
         "related_term_3":""
       },
       "dependency":{
-        "definition":"",
+        "definition":"A requirement for continuity.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -184,7 +184,7 @@
         "related_term_3":""
       },
       "design":{
-        "definition":"",
+        "definition":"A plan for a space and time.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -197,7 +197,7 @@
         "related_term_3":""
       },
       "diversity":{
-        "definition":"",
+        "definition":"Variation within, across and/or between groups of things.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -210,7 +210,7 @@
         "related_term_3":""
       },
       "ecosystem":{
-        "definition":"",
+        "definition":"The collection of integrated biomes that makes up a particular place and time, along with the interactions that happen between them.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -223,20 +223,33 @@
         "related_term_3":""
       },
       "energy":{
-        "definition":"",
+        "definition":"Potential for action, movement or change.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
         "usage_examples":"",
         "notes":"",
         "previous_term":"ecosystem",
+        "next_term":"entity",
+        "related_term_1":"",
+        "related_term_2":"",
+        "related_term_3":""
+      },
+      "entity":{
+        "definition":"Something that exists in real space and time.",
+        "noun_forms":"",
+        "verb_forms":"",
+        "adjective_forms":"",
+        "usage_examples":"",
+        "notes":"",
+        "previous_term":"energy",
         "next_term":"evolve",
         "related_term_1":"",
         "related_term_2":"",
         "related_term_3":""
       },
       "evolve":{
-        "definition":"",
+        "definition":"Changed over time in response to environmental conditions.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -249,7 +262,7 @@
         "related_term_3":""
       },
       "fire":{
-        "definition":"",
+        "definition":"Heat or combusting energy.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -262,7 +275,7 @@
         "related_term_3":""
       },
       "flexible":{
-        "definition":"",
+        "definition":"Able to bend without breaking. Able to adjust without changing destination.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -275,7 +288,7 @@
         "related_term_3":""
       },
       "flow":{
-        "definition":"",
+        "definition":"Smooth movement around or between things.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -288,7 +301,7 @@
         "related_term_3":""
       },
       "framework":{
-        "definition":"",
+        "definition":"The structure of a place or a plan at a particular time.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -301,7 +314,7 @@
         "related_term_3":""
       },
       "graze":{
-        "definition":"",
+        "definition":"Pattern of food availability or consumption characterized by utilization of sources at the same trophic level.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -314,33 +327,46 @@
         "related_term_3":""
       },
       "harvest":{
-        "definition":"",
+        "definition":"The bounty from activities designed to collect resources for use.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
         "usage_examples":"",
         "notes":"",
         "previous_term":"graze",
-        "next_term":"integrated",
+        "next_term":"identity",
         "related_term_1":"",
         "related_term_2":"",
         "related_term_3":""
       },
       "integrated":{
-        "definition":"",
+        "definition":"Interconnected by a sharing of resources that borders on dependency.",
+        "noun_forms":"",
+        "verb_forms":"",
+        "adjective_forms":"",
+        "usage_examples":"",
+        "notes":"",
+        "previous_term":"identity",
+        "next_term":"material",
+        "related_term_1":"",
+        "related_term_2":"",
+        "related_term_3":""
+      },
+      "identity":{
+        "definition":"That which one claims as self.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
         "usage_examples":"",
         "notes":"",
         "previous_term":"harvest",
-        "next_term":"material",
+        "next_term":"integrated",
         "related_term_1":"",
         "related_term_2":"",
         "related_term_3":""
       },
       "material":{
-        "definition":"",
+        "definition":"An observable and measurable thing.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -353,7 +379,7 @@
         "related_term_3":""
       },
       "meaning":{
-        "definition":"",
+        "definition":"The reason something exists.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -366,7 +392,7 @@
         "related_term_3":""
       },
       "natural":{
-        "definition":"",
+        "definition":"Made by the living world through environmentally powered biological, physical or chemical processes.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -379,7 +405,7 @@
         "related_term_3":""
       },
       "network":{
-        "definition":"",
+        "definition":"Interconnected by sharing of information.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -392,7 +418,7 @@
         "related_term_3":""
       },
       "parent":{
-        "definition":"",
+        "definition":"The immediate precursor of an entity.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -405,7 +431,7 @@
         "related_term_3":""
       },
       "perspective":{
-        "definition":"",
+        "definition":"The sum of all that is observable and measurable related to a specific context, in a particular place and time, and from a specific viewpoint.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -418,7 +444,7 @@
         "related_term_3":""
       },
       "purpose":{
-        "definition":"",
+        "definition":"The objectives or goals being advanced by a particular entity.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -431,7 +457,7 @@
         "related_term_3":""
       },
       "quality":{
-        "definition":"",
+        "definition":"A measurable thing about an entity.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -444,7 +470,7 @@
         "related_term_3":""
       },
       "regenerative":{
-        "definition":"",
+        "definition":"Able to continue indefinitely ( or for a really long time ) without external inputs from non-ecosystem members.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -457,7 +483,7 @@
         "related_term_3":""
       },
       "resilient":{
-        "definition":"",
+        "definition":"Able to respond to change and/or recover from trauma rapidly and efficiently.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -470,7 +496,7 @@
         "related_term_3":""
       },
       "respect":{
-        "definition":"",
+        "definition":"Appreciation. To treat with reverence. To love, even when in the absence of.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -483,7 +509,7 @@
         "related_term_3":""
       },
       "scale":{
-        "definition":"",
+        "definition":"The spectrum between one thing and another. Representing the gray area between values.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -496,7 +522,7 @@
         "related_term_3":""
       },
       "soil":{
-        "definition":"",
+        "definition":"Growing substrate composed of parent materials that cycle water and air as a result of working biological components.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -509,7 +535,7 @@
         "related_term_3":""
       },
       "still":{
-        "definition":"",
+        "definition":"Without movement. Silent. Content.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -522,7 +548,7 @@
         "related_term_3":""
       },
       "sustainable":{
-        "definition":"",
+        "definition":"Can be persisted following prescribed steps, manageable by those responsible.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -535,7 +561,7 @@
         "related_term_3":""
       },
       "technology":{
-        "definition":"",
+        "definition":"Anything powered by manufactured energy.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -548,7 +574,7 @@
         "related_term_3":""
       },
       "tool":{
-        "definition":"",
+        "definition":"Anything used to accomplish a task.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -561,7 +587,7 @@
         "related_term_3":""
       },
       "trophic":{
-        "definition":"",
+        "definition":"Levels of organization based on complexity of foodstuffs utilized.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -574,7 +600,7 @@
         "related_term_3":""
       },
       "vibration":{
-        "definition":"",
+        "definition":"Regular motion, typically back and forth.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -587,7 +613,7 @@
         "related_term_3":""
       },
       "water":{
-        "definition":"",
+        "definition":"Flowing energy with high mass and cohesion.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -600,7 +626,7 @@
         "related_term_3":""
       },
       "whole":{
-        "definition":"",
+        "definition":"The entirety. All.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -613,7 +639,7 @@
         "related_term_3":""
       },
       "wind":{
-        "definition":"",
+        "definition":"Flowing energy with low mass and cohesion.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",
@@ -626,7 +652,7 @@
         "related_term_3":""
       },
       "work":{
-        "definition":"",
+        "definition":"Movement and/or observable change in real space and time.",
         "noun_forms":"",
         "verb_forms":"",
         "adjective_forms":"",

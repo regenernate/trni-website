@@ -151,11 +151,18 @@ const server = http.createServer((req, res) => {
       subpath = subpath.toLowerCase();
       t = t.split("{{term}}").join(subpath);
       if( subpath && definitions_list[ subpath ] ){
-        let tpi = definitions_list[ subpath ]
+        //insert the various templated infos
+        let tpi = definitions_list[ subpath ];
         for( let i in tpi ){
           t = t.split("{{" + i + "}}").join(tpi[i]);
         }
-      }
+        //now replace all versions of known terms with links to that term
+        for( let i in terms ){
+          if( terms[i] != subpath ){
+            t = t.split( terms[i] ).join('<a href="./' + terms[i] + '">' + terms[i] + '</a>');
+          }
+        }
+      }//else return term not known, or link to websters? link to wikipedia, link to ...
       res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
       res.write(t);
       res.end();
