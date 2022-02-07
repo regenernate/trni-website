@@ -12,6 +12,15 @@ main{
   font-family: Georgia,serif;
 }
 
+nav{
+  list-style:none;
+  text-align:center;
+}
+
+nav li{
+  display:inline;
+}
+
 .word-list{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

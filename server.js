@@ -35,7 +35,10 @@ var filename_index = {
   schedule_a_consult:__dirname+'/schedule_a_consult.html',
   preconsult_questionert:__dirname+'/preconsult_questionert.html',
   educational_consult:__dirname+'/educational_consult.html',
-  definitions:__dirname+"/templates/definition.html"
+  definitions:__dirname+"/templates/definition.html",
+  how_do_i_use_this:__dirname+"/subpages/how_do_I_use_this.html",
+  who_did_this:__dirname+"/subpages/who_did_this.html",
+  why_do_this:__dirname+"/subpages/why_do_this.html"
 };
 
 function reloadPage( v ){
