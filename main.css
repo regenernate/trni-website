@@ -19,6 +19,7 @@ nav{
 
 nav li{
   display:inline;
+  padding-right:1rem;
 }
 
 .word-list{
