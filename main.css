@@ -2,6 +2,10 @@ html{
   font-size:15pt;
 }
 
+body{
+  padding-bottom:5rem;
+}
+
 li{
   padding:.5rem;
 }
@@ -109,7 +113,7 @@ h5{
   display:block;
   max-width:100%;
   width:100%;
-  padding:5%;
+  margin:5%;
 }
 
 .tinyfont{
