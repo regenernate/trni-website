@@ -38,7 +38,10 @@ var filename_index = {
   definitions:__dirname+"/templates/definition.html",
   how_do_i_use_this:__dirname+"/subpages/how_do_I_use_this.html",
   who_did_this:__dirname+"/subpages/who_did_this.html",
-  why_do_this:__dirname+"/subpages/why_do_this.html"
+  why_do_this:__dirname+"/subpages/why_do_this.html",
+  the_practice:__dirname+"/subpages/the_practice.html",
+  the_principles:__dirname+"/subpages/the_principles.html",
+  whos_responsible:__dirname+"/subpages/whos_responsible.html"
 };
 
 function reloadPage( v ){
