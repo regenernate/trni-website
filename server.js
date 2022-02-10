@@ -124,7 +124,7 @@ const server = http.createServer((req, res) => {
       //insert herification data
       t = page_index[ de ].split("<hereify />").join(t);
       //add any lists needed by this page
-      t = preprocessors.listify(t);
+      if( preprocessors.listify ) t = preprocessors.listify(t);
       //return the page contents
       res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
       res.write(t);
@@ -142,7 +142,7 @@ const server = http.createServer((req, res) => {
       //run any preprocessing necessary
       if( preprocessors.hasOwnProperty( pagename ) ) t = preprocessors[pagename]( t, subpath );
       //this is technically a definitions preprocessor but all pages could have lists
-      t = preprocessors.listify(t);
+      if( preprocessors.listify ) t = preprocessors.listify(t);
       res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
       res.write(t);
       res.end();
