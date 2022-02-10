@@ -20,7 +20,8 @@ var filename_index = require('./data/templates.json').templates;
 
 //define any preprocessors
 var preprocessors = {};
-let pp = require('./data/preprocessors.json').preprocessors || null;
+let pp;
+try{ pp = require('./data/preprocessors.json').preprocessors }catch(err){};
 if(pp ){
   for( let i in pp ){
     preprocessors[pp[i].signature] = require(pp[i].path)[pp[i].method];
