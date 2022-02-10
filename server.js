@@ -2,6 +2,14 @@
 require('dotenv').config();
 
 const DOMAIN_OVERRIDE = process.env.DOMAIN_OVERRIDE || "hshf";
+const IMAGE_PATH = process.env.IMAGE_PATH;
+
+const http = require('http');
+const fs = require('fs');
+
+const hostname = process.env.BIND_IP || process.env.HOST || '127.0.0.1';
+const port = process.env.PORT || 3000;
+const toolspath = "./tools";
 
 //domain lock so users are less likely to just add tons of domains without thinking and testing
 //this is a feature of the server, not a domain switching station
@@ -15,23 +23,15 @@ var domains = {
   'regenernativedesign':"rgd"
 };
 
-const http = require('http');
-const fs = require('fs');
-
-const hostname = process.env.BIND_IP || process.env.HOST || '127.0.0.1';
-const port = process.env.PORT || 3000;
-const toolspath = "./tools";
-var home = "homepage";
-
 var page_index = {};
 var filename_index = {
-  homepage_regenernate:__dirname+'/regenernate.html',
-  homepage_trni:__dirname+'/the_regenernative_institute.html',
-  homepage_rlm:__dirname+'/regenernative_lm.html',
-  homepage_wor:__dirname+'/whole_of_regen.html',
-  homepage_fdb:__dirname+'/farmstead_db.html',
-  homepage_sdb:__dirname+'/software_db.html',
-  homepage_rgd:__dirname+'/regenernativedesign.html',
+  regenernate:__dirname+'/regenernate.html',
+  trni:__dirname+'/the_regenernative_institute.html',
+  rlm:__dirname+'/regenernative_lm.html',
+  wor:__dirname+'/whole_of_regen.html',
+  fdb:__dirname+'/farmstead_db.html',
+  sdb:__dirname+'/software_db.html',
+  rgd:__dirname+'/regenernativedesign.html',
   schedule_a_consult:__dirname+'/schedule_a_consult.html',
   preconsult_questionert:__dirname+'/preconsult_questionert.html',
   educational_consult:__dirname+'/educational_consult.html',
@@ -43,6 +43,8 @@ var filename_index = {
   the_principles:__dirname+"/subpages/the_principles.html",
   whos_responsible:__dirname+"/subpages/whos_responsible.html"
 };
+
+var preprocessors = { definitions:fillTerms };
 
 function reloadPage( v ){
   page_index[ v ] = "";
@@ -86,7 +88,7 @@ const server = http.createServer((req, res) => {
 
   //serve images first
   if( req.url === '/favicon.ico' || req.headers.accept.substr(0,5).toLowerCase() == 'image' ){
-    var filename = __dirname+'/images'+req.url;
+    var filename = __dirname + IMAGE_PATH + ( ( req.url.substr(0,1) == "/" ) ? req.url : "/" + req.url );
     //console.log("image ... " + req.url );
     // This line opens the file as a readable stream
     var readStream = fs.createReadStream(filename);
@@ -135,48 +137,29 @@ const server = http.createServer((req, res) => {
     let p = req.url.substr(1).split(".")[0].toLowerCase().split("/"); //get just the page name - assumes a leading "/" and works with .html extension or without
     let pagename = p[0];
     let subpath = p[1] || "";
+    subpath = subpath.toLowerCase();
+
     //console.log("Looking for page :: " + pagename + " in " + visiting );
-    if( filename_index.hasOwnProperty( de ) ){ //peel off known 404 domains
-      res.writeHead(200, {'Content-Type': 'text/html','Content-Length':page_index[de].length });
-      res.write( page_index[de] );
-      res.end();
-    }else if( pagename === '' || pagename === 'index' ){ //peel off the root domain homepage requests for next
-      //hereify
+    if( pagename === '' || pagename === 'index' ){ //peel off the root domain homepage requests
       let t = require(toolspath + '/putyouhereifier.js').module();
       //insert herification data
-      t = page_index[ home + "_" + de ].split("<hereify />").join(t);
+      t = page_index[ de ].split("<hereify />").join(t);
       //add any lists needed by this page
       t = listify(t);
       //return the page contents
       res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
       res.write(t);
       res.end();
-    }else if( pagename == "definitions" ){
-      //insert the info
-      let t = page_index[pagename];
-      subpath = subpath.toLowerCase();
-      t = t.split("{{term}}").join(subpath);
-      if( subpath && definitions_list[ subpath ] ){
-        //insert the various templated infos
-        let tpi = definitions_list[ subpath ];
-        for( let i in tpi ){
-          t = t.split("{{" + i + "}}").join(tpi[i]);
-        }
-        //now replace all versions of known terms with links to that term
-        for( let i in terms ){
-          if( terms[i] != subpath ){
-            t = t.split( terms[i] ).join('<a href="./' + terms[i] + '">' + terms[i] + '</a>');
-          }
-        }
-      }//else return term not known, or link to websters? link to wikipedia, link to ...
-      res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
-      res.write(t);
-      res.end();
     }else if( filename_index.hasOwnProperty( pagename ) ) { //this is a known page on a root domain, not the homepage, ( with a template to display )
       //find the template to run
       let t = page_index[ pagename ];
+      //construct path
       let r = "/";
       if( subpath ) r += subpath;
+      //run any preprocessing necessary
+      console.log(preprocessors[pagename] + " " + pagename);
+      if( preprocessors.hasOwnProperty( pagename ) ) t = preprocessors[pagename]( t, subpath );
+
       t = t.split("<returnificate-me />").join(r);
       t = listify(t);
       res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
@@ -190,6 +173,24 @@ const server = http.createServer((req, res) => {
     }
   }
 });
+
+function fillTerms( t, subpath ){
+  t = t.split("{{term}}").join(subpath);
+  if( subpath && definitions_list[ subpath ] ){
+    //insert the various templated infos
+    let tpi = definitions_list[ subpath ];
+    for( let i in tpi ){
+      t = t.split("{{" + i + "}}").join(tpi[i]);
+    }
+    //now replace all versions of known terms with links to that term
+    for( let i in terms ){
+      if( terms[i] != subpath ){
+        t = t.split( terms[i] ).join('<a href="./' + terms[i] + '">' + terms[i] + '</a>');
+      }
+    }
+  }//else return term not known, or link to websters? link to wikipedia, link to ...
+  return t;
+}
 
 /** functionality added for whole of regen **/
 var terms=require('./data/terms.json').terms;
