@@ -1,0 +1,6 @@
+{
+  "preprocessors":[
+    { "signature":"definitions", "path":"./tools/terminator.js", "method":"fillTerms" },
+    { "signature":"listify", "path":"./tools/terminator.js", "method":"listify" }
+  ]
+}

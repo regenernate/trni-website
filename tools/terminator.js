@@ -1,4 +1,8 @@
 /** functionality added for whole of regen **/
+
+//uses listifier tool internally!
+
+//load terms and definitions
 var terms=require('../data/terms.json').terms;
 var definitions_list =require('../data/definitions.json').terms;
 
