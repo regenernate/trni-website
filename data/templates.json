@@ -1,0 +1,21 @@
+{
+  "templates":{
+    "regenernate":"./regenernate.html",
+    "trni":"./the_regenernative_institute.html",
+    "rlm":"./regenernative_lm.html",
+    "wor":"./whole_of_regen.html",
+    "fdb":"./farmstead_db.html",
+    "sdb":"./software_db.html",
+    "rgd":"./regenernativedesign.html",
+    "schedule_a_consult":"./schedule_a_consult.html",
+    "preconsult_questionert":"./preconsult_questionert.html",
+    "educational_consult":"./educational_consult.html",
+    "definitions":"./templates/definition.html",
+    "how_do_i_use_this":"./subpages/how_do_I_use_this.html",
+    "who_did_this":"./subpages/who_did_this.html",
+    "why_do_this":"./subpages/why_do_this.html",
+    "the_practice":"./subpages/the_practice.html",
+    "the_principles":"./subpages/the_principles.html",
+    "whos_responsible":"./subpages/whos_responsible.html"
+  }
+}

@@ -13,38 +13,17 @@ const toolspath = "./tools";
 
 //domain lock so users are less likely to just add tons of domains without thinking and testing
 //this is a feature of the server, not a domain switching station
-var domains = {
-  regenernate:"regenernate",
-  theregenernativeinstitute:"trni",
-  regenernativelandmanagement:"rlm",
-  thewholeofregenerative:"wor",
-  'farmstead-design-build':"fdb",
-  'software-design-build':"sdb",
-  'regenernativedesign':"rgd"
-};
+var domains=require('./data/domains.json').domains;
 
+//load the templates
 var page_index = {};
-var filename_index = {
-  regenernate:__dirname+'/regenernate.html',
-  trni:__dirname+'/the_regenernative_institute.html',
-  rlm:__dirname+'/regenernative_lm.html',
-  wor:__dirname+'/whole_of_regen.html',
-  fdb:__dirname+'/farmstead_db.html',
-  sdb:__dirname+'/software_db.html',
-  rgd:__dirname+'/regenernativedesign.html',
-  schedule_a_consult:__dirname+'/schedule_a_consult.html',
-  preconsult_questionert:__dirname+'/preconsult_questionert.html',
-  educational_consult:__dirname+'/educational_consult.html',
-  definitions:__dirname+"/templates/definition.html",
-  how_do_i_use_this:__dirname+"/subpages/how_do_I_use_this.html",
-  who_did_this:__dirname+"/subpages/who_did_this.html",
-  why_do_this:__dirname+"/subpages/why_do_this.html",
-  the_practice:__dirname+"/subpages/the_practice.html",
-  the_principles:__dirname+"/subpages/the_principles.html",
-  whos_responsible:__dirname+"/subpages/whos_responsible.html"
-};
+var filename_index = require('./data/templates.json').templates;
 
-var preprocessors = { definitions:fillTerms };
+//define any preprocessors
+var preprocessors = {
+  definitions:require('./tools/terminator').fillTerms,
+  listify:require('./tools/terminator').listify
+}
 
 function reloadPage( v ){
   page_index[ v ] = "";
@@ -145,7 +124,7 @@ const server = http.createServer((req, res) => {
       //insert herification data
       t = page_index[ de ].split("<hereify />").join(t);
       //add any lists needed by this page
-      t = listify(t);
+      t = preprocessors.listify(t);
       //return the page contents
       res.writeHead(200, {'Content-Type': 'text/html','Content-Length':t.length });
       res.write(t);
@@ -155,13 +134,15 @@ const server = http.createServer((req, res) => {
       let t = page_index[ pagename ];
       //construct path
       let r = "/";
-      if( subpath ) r += subpath;
+      if( subpath ){
+        r += subpath;
+        //only need returnification on non root paths
+        t = t.split("<returnificate-me />").join(r);
+      }
       //run any preprocessing necessary
-      console.log(preprocessors[pagename] + " " + pagename);
       if( preprocessors.hasOwnProperty( pagename ) ) t = preprocessors[pagename]( t, subpath );
-
-      t = t.split("<returnificate-me />").join(r);
-      t = listify(t);
+      //this is technically a definitions preprocessor but all pages could have lists
+      t = preprocessors.listify(t);
       res.writeHead(200, {'Content-Type':'text/html', 'Content-Length':t.length})
       res.write(t);
       res.end();
@@ -173,62 +154,6 @@ const server = http.createServer((req, res) => {
     }
   }
 });
-
-function fillTerms( t, subpath ){
-  t = t.split("{{term}}").join(subpath);
-  if( subpath && definitions_list[ subpath ] ){
-    //insert the various templated infos
-    let tpi = definitions_list[ subpath ];
-    for( let i in tpi ){
-      t = t.split("{{" + i + "}}").join(tpi[i]);
-    }
-    //now replace all versions of known terms with links to that term
-    for( let i in terms ){
-      if( terms[i] != subpath ){
-        t = t.split( terms[i] ).join('<a href="./' + terms[i] + '">' + terms[i] + '</a>');
-      }
-    }
-  }//else return term not known, or link to websters? link to wikipedia, link to ...
-  return t;
-}
-
-/** functionality added for whole of regen **/
-var terms=require('./data/terms.json').terms;
-var definitions_list =require('./data/definitions.json').terms;
-
-//add links to all of the alternative forms of words
-let checked_index = {};
-for( let i in definitions_list ){
-  if( checked_index[i] ) continue; //sanity check since we are adding items to the object we are iterating on
-  checked_index[i] = true;
-  for( let k in {"noun_forms":true, "verb_forms":true, "adjective_forms":true} ){
-    if( definitions_list[i][k] ){
-      let forms = definitions_list[i][k].split(",");
-      for( let j in forms ){
-        definitions_list[ forms[j] ] = definitions_list[i];
-        checked_index[ forms[j] ] = true;
-      }
-    }
-  }
-}
-
-//console.log(definitions_list);
-
-function listify( content ){
-  let t = content.split("<listify ");
-  let r = ""; //initializing return variable
-  for( let i=0; i<t.length; i++){
-    if(i%2 == 1){
-      //pull the order desired out of the tag
-      let order = t[i].substring(0, t[i].indexOf("/>")-1);
-      r += require(toolspath + '/listifier.js').module( terms, order, "./definitions/");
-      r += t[i].substr( t[i].indexOf(">") + 1);
-    }else{
-      r += t[i]
-    }
-  }
-  return r;
-}
 
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
