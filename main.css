@@ -3,7 +3,7 @@ html{
 }
 
 body{
-  padding-bottom:5rem;
+  margin-bottom:6rem;
 }
 
 li{
@@ -44,7 +44,13 @@ nav li{
 }
 
 .medium{
-  max-width:600px;
+  width:100%;
+  max-width:800px;
+}
+
+.pic-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 p{
@@ -90,6 +96,12 @@ h5{
   background-color: #d4c9c9;
 }
 
+.wide-image {
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+}
+
 .medium-image {
   width:600px;
   padding:5px;
@@ -119,9 +131,14 @@ h5{
   width:100%;
 }
 
+.whitefont{
+  color:#FFFFFF;
+}
+
 .tinyfont{
   font-size:.6rem;
 }
+
 .smallfont{
    font-size:.85rem;
  }
@@ -130,6 +147,7 @@ h5{
   font-size:1.2rem;
   font-weight: bold;
 }
+
 .quoted{
   margin: 10%;
   font-size:.9rem;
