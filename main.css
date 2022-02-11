@@ -16,6 +16,10 @@ main{
   font-family: Georgia,serif;
 }
 
+footer{
+  margin:auto;
+}
+
 nav{
   list-style:none;
   text-align:center;
