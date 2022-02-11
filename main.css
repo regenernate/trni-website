@@ -103,8 +103,9 @@ h5{
 }
 
 .medium-image {
-  width:600px;
-  padding:5px;
+  width:100%;
+  max-width:800px;
+  margin:auto;
 }
 
 .narrow-image {
