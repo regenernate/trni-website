@@ -3,7 +3,7 @@
 //uses listifier tool internally!
 
 //load terms and definitions
-var terms=require('../data/terms.json').terms;
+var { terms } = require('../data/terms.json');
 var definitions_list =require('../data/definitions.json').terms;
 
 //add links to all of the alternative forms of words
@@ -28,7 +28,18 @@ module.exports.fillTerms = function( t, subpath ){
     //insert the various templated infos
     let tpi = definitions_list[ subpath ];
     for( let i in tpi ){
-      t = t.split("{{" + i + "}}").join(tpi[i]);
+      let input_txt;
+      if( ['related_term_1', 'related_term_2', 'related_term_3'].indexOf(i) >= 0 ){
+        //insert combo box for now
+        input_txt = "<select name='" + i + "' onChange='combo(this, \"demo\")'>";
+        for( let j in terms ){
+          input_txt += "<option>" + terms[j] + "</option>";
+        }
+        input_txt += "</select>";
+      }else{
+        input_txt = tpi[i]
+      }
+      t = t.split("{{" + i + "}}").join(input_txt);
     }
     //now replace all versions of known terms with links to that term
     for( let i in terms ){

@@ -1,7 +1,12 @@
-exports.module = function( terms, order, url_base ){
+//pre_text and post_text can have embedded {{term}}'s where the proper term will be substituted
+
+exports.module = function( terms, order, url_base, pre_text, post_text ){
 
   if(!terms || !terms.sort ) return "";
   if(!order) order = "alpha";
+
+  if(!pre_text) pre_text="<a href='" + url_base + "{{term}}'>";
+  if(!post_text) post_text="</a><br />";
 
   order = order.toLowerCase();
 
@@ -20,7 +25,9 @@ exports.module = function( terms, order, url_base ){
   let rtn = "";
   if(url_base){
     for( let i=0; i<terms.length; i++ ){
-      rtn += "<a href='" + url_base + terms[i] + "'>" + terms[i] + "</a><br />";
+      let pre_t = pre_text.split("{{term}}").join(terms[i]);
+      let post_t = post_text.split("{{term}}").join(terms[i]);
+      rtn += pre_t + terms[i] + post_t;
     }
   }else{
     rtn = terms.join("<br \>")
