@@ -12,7 +12,7 @@
         "next_term":"adaptive",
         "related_term_1":"community",
         "related_term_2":"harvest",
-        "related_term_3":"regenerative"
+        "related_term_3":"purpose"
       },
       "adaptive":{
         "definition":"Able to adjust to conditions on the ground. Ideally moment by moment but at a minimum seasonally, daily and hourly.",
@@ -23,9 +23,9 @@
         "notes":"",
         "previous_term":"abundant",
         "next_term":"analysis",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"change",
+        "related_term_2":"cycle",
+        "related_term_3":"fire"
       },
       "analysis":{
         "definition":"Open-eyed assessment of conditions on the ground in context of objectives to be achieved and available resources.",
@@ -36,9 +36,9 @@
         "notes":"",
         "previous_term":"adaptive",
         "next_term":"appreciation",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"network",
+        "related_term_2":"material",
+        "related_term_3":"perspective"
       },
       "appreciation":{
         "definition":"Gratefullness for what is already here, or for what has already happened.",
@@ -49,9 +49,9 @@
         "notes":"",
         "previous_term":"analysis",
         "next_term":"biome",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"cycle",
+        "related_term_2":"harvest",
+        "related_term_3":"perspective"
       },
       "biome":{
         "definition":"Everything contained within or adjacent to the portion of an ecosystem in question as defined by a particular biological categorization.",
@@ -62,9 +62,9 @@
         "notes":"",
         "previous_term":"appreciation",
         "next_term":"browse",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"natural",
+        "related_term_2":"classification",
+        "related_term_3":"ecosystem"
       },
       "browse":{
         "definition":"Pattern of food availability or consumption characterized by multiple sources across trophic levels being mixed and matched at the eater's choice.",
@@ -75,9 +75,9 @@
         "notes":"",
         "previous_term":"biome",
         "next_term":"change",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"graze",
+        "related_term_2":"flow",
+        "related_term_3":"soil"
       },
       "change":{
         "definition":"Observable and potentially measurable difference over time.",
@@ -88,9 +88,9 @@
         "notes":"",
         "previous_term":"browse",
         "next_term":"chaos",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"flow",
+        "related_term_2":"respect",
+        "related_term_3":"resilient"
       },
       "chaos":{
         "definition":"Disorder.",
@@ -101,9 +101,9 @@
         "notes":"",
         "previous_term":"change",
         "next_term":"classification",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"appreciation",
+        "related_term_2":"resilient",
+        "related_term_3":"natural"
       },
       "classification":{
         "definition":"Unique set of categories to organizate a thing for accurate identification.",
@@ -114,9 +114,9 @@
         "notes":"",
         "previous_term":"chaos",
         "next_term":"communicate",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"ecosystem",
+        "related_term_2":"network",
+        "related_term_3":"resilient"
       },
       "communicate":{
         "definition":"Accurate conveyance of information from one entity to another.",
@@ -127,9 +127,9 @@
         "notes":"",
         "previous_term":"classification",
         "next_term":"community",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"purpose",
+        "related_term_2":"framework",
+        "related_term_3":"meaning"
       },
       "community":{
         "definition":"A group of entities that self-identify or can be externally identified as a whole based on physical, mental or emotional proximity.",
@@ -140,9 +140,9 @@
         "notes":"",
         "previous_term":"communicate",
         "next_term":"context",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"soil",
+        "related_term_2":"change",
+        "related_term_3":"network"
       },
       "context":{
         "definition":"The specific set of circumstances and criteria impacting a particular location or situation.",
@@ -153,9 +153,9 @@
         "notes":"",
         "previous_term":"community",
         "next_term":"cycle",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"quality",
+        "related_term_2":"purpose",
+        "related_term_3":"design"
       },
       "cycle":{
         "definition":"Something that repeats over time, usually feeding into itself.",
@@ -166,9 +166,9 @@
         "notes":"",
         "previous_term":"context",
         "next_term":"dependency",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"flow",
+        "related_term_2":"ecosystem",
+        "related_term_3":"fire"
       },
       "dependency":{
         "definition":"A requirement for continuity.",
@@ -179,9 +179,9 @@
         "notes":"",
         "previous_term":"cycle",
         "next_term":"design",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"appreciation",
+        "related_term_2":"graze",
+        "related_term_3":"browse"
       },
       "design":{
         "definition":"A plan for a space and time.",
@@ -193,8 +193,8 @@
         "previous_term":"dependency",
         "next_term":"diversity",
         "related_term_1":"adaptive",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_2":"quality",
+        "related_term_3":"ecosystem"
       },
       "diversity":{
         "definition":"Variation within, across and/or between groups of things.",
@@ -205,9 +205,9 @@
         "notes":"",
         "previous_term":"design",
         "next_term":"ecosystem",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"ecosystem",
+        "related_term_2":"dependency",
+        "related_term_3":"resilient"
       },
       "ecosystem":{
         "definition":"The collection of integrated biomes that makes up a particular place and time, along with the interactions that happen between them.",
@@ -218,9 +218,9 @@
         "notes":"",
         "previous_term":"diversity",
         "next_term":"energy",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"energy",
+        "related_term_2":"cycle",
+        "related_term_3":"whole"
       },
       "energy":{
         "definition":"Potential for action, movement or change.",
@@ -231,9 +231,9 @@
         "notes":"",
         "previous_term":"ecosystem",
         "next_term":"entity",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"wind",
+        "related_term_2":"fire",
+        "related_term_3":"water"
       },
       "entity":{
         "definition":"Something that exists in real space and time.",
@@ -244,9 +244,9 @@
         "notes":"",
         "previous_term":"energy",
         "next_term":"evolve",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"chaos",
+        "related_term_2":"natural",
+        "related_term_3":"energy"
       },
       "evolve":{
         "definition":"Changed over time in response to environmental conditions.",
@@ -257,9 +257,9 @@
         "notes":"",
         "previous_term":"energy",
         "next_term":"fire",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"diversity",
+        "related_term_2":"resilient",
+        "related_term_3":"sustainable"
       },
       "fire":{
         "definition":"Heat or combusting energy.",
@@ -270,9 +270,9 @@
         "notes":"",
         "previous_term":"evolve",
         "next_term":"flexible",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"appreciation",
+        "related_term_2":"natural",
+        "related_term_3":"regenerative"
       },
       "flexible":{
         "definition":"Able to bend without breaking. Able to adjust without changing destination.",
@@ -283,9 +283,9 @@
         "notes":"",
         "previous_term":"fire",
         "next_term":"flow",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"resilient",
+        "related_term_2":"energy",
+        "related_term_3":"water"
       },
       "flow":{
         "definition":"Smooth movement around or between things.",
@@ -296,9 +296,9 @@
         "notes":"",
         "previous_term":"flexible",
         "next_term":"framework",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"water",
+        "related_term_2":"wind",
+        "related_term_3":"sustainable"
       },
       "framework":{
         "definition":"The structure of a place or a plan at a particular time.",
@@ -309,9 +309,9 @@
         "notes":"",
         "previous_term":"flow",
         "next_term":"graze",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"browse",
+        "related_term_2":"graze",
+        "related_term_3":"fire"
       },
       "graze":{
         "definition":"Pattern of food availability or consumption characterized by utilization of sources at the same trophic level.",
@@ -322,9 +322,9 @@
         "notes":"",
         "previous_term":"framework",
         "next_term":"harvest",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"browse",
+        "related_term_2":"diversity",
+        "related_term_3":"soil"
       },
       "harvest":{
         "definition":"The bounty from activities designed to collect resources for use.",
@@ -335,9 +335,9 @@
         "notes":"",
         "previous_term":"graze",
         "next_term":"identity",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"abundant",
+        "related_term_2":"natural",
+        "related_term_3":"sustainable"
       },
       "integrated":{
         "definition":"Interconnected by a sharing of resources that borders on dependency.",
@@ -361,9 +361,9 @@
         "notes":"",
         "previous_term":"harvest",
         "next_term":"integrated",
-        "related_term_1":"",
-        "related_term_2":"",
-        "related_term_3":""
+        "related_term_1":"energy",
+        "related_term_2":"meaning",
+        "related_term_3":"purpose"
       },
       "material":{
         "definition":"An observable and measurable thing.",

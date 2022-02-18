@@ -6,6 +6,37 @@
 var { terms } = require('../data/terms.json');
 var definitions_list =require('../data/definitions.json').terms;
 
+console.log(terms);
+
+
+
+//reorganize based on most similar terms
+for( let i in definitions_list ){
+  if(!definitions_list[i].hasOwnProperty("relatedness")) definitions_list[i].relatedness = 0;
+  let def = definitions_list[i];
+  for( let k in {"related_term_1":true, "related_term_2":true, "related_term_3":true} ){
+    if( !def[k] ) continue; //no defined related term yet
+    console.log( 'looking for ' + def[k] );
+    if( !definitions_list[ def[k] ].hasOwnProperty("relatedness") ){  //there is a related term
+      definitions_list[ def[k] ].relatedness = 1;
+    }else definitions_list[ def[k] ].relatedness++;
+  }
+}
+
+//try sorting on relation
+for( let i=0; i<terms.length-1; i++ ){
+  if( definitions_list[ terms[i] ].relatedness < definitions_list[ terms[i+1] ].relatedness ){
+    let tmp = terms[i];
+    terms[i] = terms[i+1];
+    terms[i+1] = tmp;
+    i--;
+  }
+}
+
+
+
+console.log(terms);
+
 //add links to all of the alternative forms of words
 let checked_index = {};
 for( let i in definitions_list ){
@@ -31,7 +62,7 @@ module.exports.fillTerms = function( t, subpath ){
       let input_txt;
       if( ['related_term_1', 'related_term_2', 'related_term_3'].indexOf(i) >= 0 ){
         //insert combo box for now
-        input_txt = "<select name='" + i + "' onChange='combo(this, \"demo\")'>";
+        input_txt = "<select name='" + i + "' onChange='callMe(this);'>";
         for( let j in terms ){
           input_txt += "<option>" + terms[j] + "</option>";
         }
@@ -43,7 +74,7 @@ module.exports.fillTerms = function( t, subpath ){
     }
     //now replace all versions of known terms with links to that term
     for( let i in terms ){
-      if( terms[i] != subpath ){
+      if( terms[i] != subpath && terms[i] != "work" ){
         t = t.split( terms[i] ).join('<a href="./' + terms[i] + '">' + terms[i] + '</a>');
       }
     }

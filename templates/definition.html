@@ -1,7 +1,16 @@
 <html>
 
-  <headerme>The definition template.</headerme>
-
+  <head>
+    <headerme>The definition template.</headerme>
+    <script language='javascript'>
+      async function callMe(target){
+        var options = {method: 'POST',headers:{'Content-type':'application/json', Accept:'application/json'},body: JSON.stringify( { term:"{{term}}", relationship:target.name, related_term:target.value } ) };
+        let response = await fetch( "/terms/update", options);
+        let data = await response.json();
+        
+      }
+    </script>
+  </head>
   <body>
     <main class="medium">
       <span>Previous Term: {{previous_term}}</span>
