@@ -94,7 +94,7 @@ const server = http.createServer((req, res) => {
     });
     // This catches any errors that happen while creating the readable stream (usually invalid names)
     readStream.on('error', function(err) {
-      res.writeHead(404)
+      res.writeHead(404);
 //      console.log("There was a failure reading :: " + filename + " :: " + err );
       res.end();
     });
